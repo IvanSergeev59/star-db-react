@@ -39,22 +39,3 @@ export default class SwapiService {
     }
   }
   
-  
-  
-  const swapi = new SwapiService();
-  
-  swapi.getAllPeople().then((people) => {
-    
-  })
-  
-  swapi.getPerson(1).then((body) => {
-    
-  })
-  
-  swapi.getAllStarships().then((starships) => {
-    console.log(starships)
-  })
-  
-  swapi.getStarship(9).then((body) => {
-    console.log(body)
-  })
