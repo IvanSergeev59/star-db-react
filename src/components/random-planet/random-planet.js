@@ -10,6 +10,7 @@ export default class RandomPlanet extends Component {
   swapiService = new SwapiService();
 
   state= {
+    id: null,
     name: null,
     population: null,
     rotation: null,
@@ -23,10 +24,13 @@ export default class RandomPlanet extends Component {
   }
 
   updatePlanet () {
+    const id = Math.floor(Math.random()*19);
     this.swapiService
-    .getPlanet(7)
+    .getPlanet(id)
       .then((planet) => {
-        this.setState ({         
+       
+        this.setState ({  
+          id,       
           name: planet.name,
           population: planet.population,
           rotation: planet.rotation_period,
@@ -41,12 +45,12 @@ export default class RandomPlanet extends Component {
 
   render() {
 
-    const {population, rotation, diameter, name} = this.state
+    const {id, population, rotation, diameter, name} = this.state
 
     return (
       <div className="random-planet jumbotron rounded">
         <img className="planet-image"
-             src="https://starwars-visualguide.com/assets/img/planets/5.jpg" />
+             src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
         <div>
           <h4>{name}</h4>
           <ul className="list-group list-group-flush">

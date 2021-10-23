@@ -22,11 +22,12 @@ export default class SwapiService {
   
     async getAllPlanets() {
       const res = await this.getResource('/planets')
-      return res.results
+      return res.results.map(this.transformPlanet)
     }
     
-    getPlanet(id) {
-      return this.getResource(`/planets/${id}/`)
+    async getPlanet(id) {
+      const planet = await this.getResource(`/planets/${id}/`);
+      return this.transformPlanet(planet)
     }
   
     async getAllStarships() {
@@ -36,6 +37,18 @@ export default class SwapiService {
     
     getStarship(id) {
       return this.getResource(`/starships/${id}/`)
+    }
+
+    transformPlanet(planet) {
+      const idRegExp = /\/([0-9])*\/$/;
+      const id = planet.url.match(idRegExp[1])
+      return { 
+          id,       
+          name: planet.name,
+          population: planet.population,
+          rotation: planet.rotation_period,
+          diameter:planet.diameter
+      }
     }
   }
   
