@@ -13,11 +13,12 @@ export default class SwapiService {
   
     async getAllPeople() {
       const res = await this.getResource(`/people/`)
-      return res.results
+      return res.results.map(this.transformPerson)
     }
   
-    getPerson(id) {
-      return this.getResource(`/people/${id}/`)
+    async getPerson(id) {
+      const person = await this.getResource(`/people/${id}/`)
+      return this.transformPerson(person)
     }
   
     async getAllPlanets() {
@@ -32,11 +33,12 @@ export default class SwapiService {
   
     async getAllStarships() {
       const res = await this.getResource('/starships')
-      return res.results
+      return res.results.map(this.transformStarship)
     }
     
-    getStarship(id) {
-      return this.getResource(`/starships/${id}/`)
+    async getStarship(id) {
+      const starship = await this.getResource(`/starships/${id}/`)
+      return this.transformStarship(starship)
     }
 
     extractId(item) {
@@ -44,15 +46,37 @@ export default class SwapiService {
       return item.url.match(idRegExp)[1] 
     }
 
-    transformPlanet(planet) {
-      
-      
+    transformPlanet(planet) {      
       return { 
-          id : this.extractId(planet),       
-          name: planet.name,
-          population: planet.population,
-          rotation: planet.rotation_period,
-          diameter:planet.diameter
+        id : this.extractId(planet),       
+        name: planet.name,
+        population: planet.population,
+        rotation: planet.rotation_period,
+        diameter:planet.diameter
+      }
+    }
+
+    transformStarship(starship) {
+      return{
+        id:this.extractId(starship),
+        name: starship.name,
+        model: starship.model,
+        manufacturer: starship.manufacturer,
+        costInCredits: starship.costInCredits,
+        length: starship.length,
+        crew: starship.crew,
+        passengers: starship.passengers,
+        cargoCapacity: starship.cargoCapacity
+      }
+    }
+
+    transformPerson(person) {
+      return {
+        id: this.extractId(person),
+        name: person.name,
+        gender: person.gender,
+        birthYear: person.birthYear,
+        eyeColor: person.eyeColor
       }
     }
   }
