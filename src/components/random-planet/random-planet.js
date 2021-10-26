@@ -1,9 +1,10 @@
 
 import React, { Component } from 'react';
 
-import SwapiService from '../../services/swapi-service.js'
+import SwapiService from '../../services/swapi-service'
+import ErrorIndicator from '../error-indicator/error-indicator';
 
-import Spinner from '../spinner/spinner.js';
+import Spinner from '../spinner/spinner';
 import './random-planet.css';
 
 export default class RandomPlanet extends Component {
@@ -19,45 +20,58 @@ export default class RandomPlanet extends Component {
     super();
 
     this.updatePlanet()
+    this.interval = setInterval(this.updatePlanet, 1500)
   }
   onPlanetLoaded = (planet) => {
     this.setState ({
       planet,
-      loading:false
+      loading: false,
+      error: false
     })
 
   }
 
-  updatePlanet () {
+  onError = (err) => {
+    this.setState({      
+      error: true,
+      loading: false
+    })
+
+  }
+
+  updatePlanet  = ()  => {
     const id = Math.floor(Math.random()*19);
     this.swapiService
     .getPlanet(id)
-      .then(this.onPlanetLoaded)        
+      .then(this.onPlanetLoaded)  
+      .catch(this.onError)      
     }
 
    
 
 
   render() {
-    const {planet, loading} = this.state
-    return (
-     
-      <div className="random-planet jumbotron rounded">        
-        <PlanetLoading planet={planet} loading={loading}/>      
+    const {planet, loading, error} = this.state
+
+    const hasData = !(loading || error)
+
+    const errorDisplay = error ? <ErrorIndicator /> : null
+    const spinner = loading ? <Spinner /> : null
+    const content = hasData ? <PlanetLoading planet={planet} /> : null
+    
+    return (     
+      <div className="random-planet jumbotron rounded">      
+        {spinner}  
+        {content}  
+        {errorDisplay}   
       </div>   
     )
   }
 }
 
-const PlanetLoading = ({planet, loading}) => {
+const PlanetLoading = ({planet}) => {
   const {id, population, rotation, diameter, name} = planet
-  if (loading) {
-    return (
-      <Spinner />
-    )
-  }
-  else {
-    return (
+   return (
       <React.Fragment>
         <img className="planet-image"
               src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`} alt="planet"/>
@@ -82,4 +96,3 @@ const PlanetLoading = ({planet, loading}) => {
     )
   }
       
-}

@@ -1,0 +1,26 @@
+.error-indicator {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-self: center;
+    margin-left: 35%;
+    color: rgba(245, 178, 55, 0.808);
+}
+
+.error-indicator .boom {
+    font-size: .9375rem;
+    text-align: center;
+
+}
+
+.error-image {
+    width: 100px;
+    height: 96px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    align-self: center;
+}
