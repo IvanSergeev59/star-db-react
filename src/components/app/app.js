@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-
+import ErrorBoundry from '../error-boundry';
 import Header from '../header';
 import PeoplePage from '../people-page/people-page';
 import RandomPlanet from '../random-planet';
-import ItemList from '../item-list';
-import PersonDetails from '../person-details';
-
+import Row from '../row';
+import { PersonDetails, PlanetDetails, StarshipDetails, PersonList, PlanetList, StarshipList } from '../sw-components';
+import { Record } from '../item-details';
 
 import './app.css';
 import SwapiService from '../../services/swapi-service';
+
+
 
 export default class App extends Component {
 
@@ -26,46 +28,56 @@ export default class App extends Component {
     });
   };
 
-
-
   render() {
 
     const planet = this.state.showRandomPlanet ?
-      <RandomPlanet/> :
-      null;
+      <RandomPlanet/> :  null;
+
+    const {getPerson, getStarship, getPersonImage, getStarshipImage, getAllPeople, getAllPlanets} = this.swapiService
+
+
+    console.log(PersonDetails)
+   
+
 
     return (
+      <ErrorBoundry>
       <div className="stardb-app">
         <Header />
-        { planet }
 
-        <button
-          className="toggle-planet btn btn-warning btn-lg"
-          onClick={this.toggleRandomPlanet}>
-          Toggle Random Planet
-        </button>
-        <PeoplePage /> 
-        <div className="row mb2">
-            <div className="col-md-6">
-              <ItemList onItemSelecter={this.onPersonSelected}
-              getData={this.swapiService.getAllPlanets}
-              renderItem={(item) => (<span>{item.name} <button>!</button></span>)}/>
-            </div>
-            <div className="col-md-6">
-              <PersonDetails personId={this.state.selectedPerson}/>
-            </div>
-        </div>
-        <div className="row mb2">
-            <div className="col-md-6">
-              <ItemList onItemSelecter={this.onPersonSelected}
-              getData={this.swapiService.getAllStarships}
-              renderItem={(item) => item.name}/>
-            </div>
-            <div className="col-md-6">
-              <PersonDetails personId={this.state.selectedPerson}/>
-            </div>
-        </div>
+         <PlanetList>
+          { ({name}) => <span>{name}</span> }
+        </PlanetList>
+
+        <StarshipList>
+          { ({name}) => <span>{name}</span> }
+        </StarshipList>
+
+        <PersonList>
+          { ({name}) => <span>{name}</span> }
+        </PersonList> 
+
+        <PersonDetails id={2} >
+              <Record field="gender" label="Gender" />
+              <Record field="eyeColor" label="Eye Color" /> 
+        </PersonDetails>
+
+        <PlanetDetails id={4} >
+              <Record field="population" label="Population" />
+              <Record field="rotation_period" label="Rotation Period" /> 
+              <Record field="diameter" label="Diameter" /> 
+        </PlanetDetails>
+
+        <StarshipDetails id={9} >
+              <Record field="model" label="Model" />
+              <Record field="length" label="Length" /> 
+              <Record field="cost_in_credits" label="Cost" /> 
+        </StarshipDetails>
+
       </div>
+    </ErrorBoundry>
     );
   }
 }
+
+
