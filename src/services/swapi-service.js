@@ -81,17 +81,17 @@ export default class SwapiService {
       }
     }
 
-    
 
-    getPersonImage = (id) => {
+
+    getPersonImage = ({id}) => {
       return `${this.imgBase}characters/${id}.jpg`
     }
 
-    getStarshipImage = (id) => {
+    getStarshipImage = ({id}) => {
       return `${this.imgBase}starships/${id}.jpg`
     }
 
-    getPlanetImage = (id) => {
+    getPlanetImage = ({id}) => {
       return `${this.imgBase}planets/${id}.jpg`
     }
   }

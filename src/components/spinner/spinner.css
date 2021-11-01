@@ -1,95 +1,76 @@
-@keyframes ldio-qbm1goxb2tb {
-    0% { transform: rotate(0) }
-    100% { transform: rotate(360deg) }
+@keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
-  .ldio-qbm1goxb2tb div { box-sizing: border-box!important }
-  .ldio-qbm1goxb2tb > div {
-    position: absolute;
-    width: 74.88px;
-    height: 74.88px;
-    top: 14.56px;
-    left: 14.56px;
-    border-radius: 50%;
-    border: 8.32px solid #000;
-    border-color: #00bc8c transparent #00bc8c transparent;
-    animation: ldio-qbm1goxb2tb 3.3333333333333335s linear infinite;
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  
-  .ldio-qbm1goxb2tb > div:nth-child(2), .ldio-qbm1goxb2tb > div:nth-child(4) {
-    width: 56.160000000000004px;
-    height: 56.160000000000004px;
-    top: 23.92px;
-    left: 23.92px;
-    animation: ldio-qbm1goxb2tb 3.3333333333333335s linear infinite reverse;
+}
+
+@-webkit-keyframes lds-double-ring {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
-  .ldio-qbm1goxb2tb > div:nth-child(2) {
-    border-color: transparent #5699d2 transparent #5699d2
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
   }
-  .ldio-qbm1goxb2tb > div:nth-child(3) { border-color: transparent }
-  .ldio-qbm1goxb2tb > div:nth-child(3) div {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform: rotate(45deg);
+}
+@keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
-  .ldio-qbm1goxb2tb > div:nth-child(3) div:before, .ldio-qbm1goxb2tb > div:nth-child(3) div:after { 
-    content: "";
-    display: block;
-    position: absolute;
-    width: 8.32px;
-    height: 8.32px;
-    top: -8.32px;
-    left: 24.96px;
-    background: #00bc8c;
-    border-radius: 50%;
-    box-shadow: 0 66.56px 0 0 #00bc8c;
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
-  .ldio-qbm1goxb2tb > div:nth-child(3) div:after {
-    left: -8.32px;
-    top: 24.96px;
-    box-shadow: 66.56px 0 0 0 #00bc8c;
+}
+@-webkit-keyframes lds-double-ring_reverse {
+  0% {
+    -webkit-transform: rotate(0);
+    transform: rotate(0);
   }
-  
-  .ldio-qbm1goxb2tb > div:nth-child(4) { border-color: transparent; }
-  .ldio-qbm1goxb2tb > div:nth-child(4) div {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    transform: rotate(45deg);
+  100% {
+    -webkit-transform: rotate(-360deg);
+    transform: rotate(-360deg);
   }
-  .ldio-qbm1goxb2tb > div:nth-child(4) div:before, .ldio-qbm1goxb2tb > div:nth-child(4) div:after {
-    content: "";
-    display: block;
-    position: absolute;
-    width: 8.32px;
-    height: 8.32px;
-    top: -8.32px;
-    left: 15.600000000000001px;
-    background: #5699d2;
-    border-radius: 50%;
-    box-shadow: 0 47.84px 0 0 #5699d2;
-  }
-  .ldio-qbm1goxb2tb > div:nth-child(4) div:after {
-    left: -8.32px;
-    top: 15.600000000000001px;
-    box-shadow: 47.84px 0 0 0 #5699d2;
-  }
-  .loadingio-spinner-double-ring-89cy8qtckb9 {
-    width: 104px;
-    height: 104px;
-    display: flex;
-    overflow: hidden;
-    position: relative;
-    margin-left: 44%;
- 
-  }
-  .ldio-qbm1goxb2tb {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transform: translateZ(0) scale(1);
-    backface-visibility: hidden;
-    transform-origin: 0 0; /* see note above */
-  }
- 
-  
+}
+
+.lds-css {
+  margin: 0 auto;
+}
+
+.lds-double-ring {
+  position: relative;
+}
+.lds-double-ring div {
+  position: absolute;
+  width: 160px;
+  height: 160px;
+  top: 20px;
+  left: 20px;
+  border-radius: 50%;
+  border: 8px solid #000;
+  border-color: #3d7ec0 transparent #3d7ec0 transparent;
+  -webkit-animation: lds-double-ring 1.5s linear infinite;
+  animation: lds-double-ring 1.5s linear infinite;
+}
+.lds-double-ring div:nth-child(2) {
+  width: 140px;
+  height: 140px;
+  top: 30px;
+  left: 30px;
+  border-color: transparent #cc4545 transparent #cc4545;
+  -webkit-animation: lds-double-ring_reverse 1.5s linear infinite;
+  animation: lds-double-ring_reverse 1.5s linear infinite;
+}
+.lds-double-ring {
+  width: 77px !important;
+  height: 77px !important;
+  -webkit-transform: translate(-38.5px, -38.5px) scale(0.385) translate(38.5px, 38.5px);
+  transform: translate(-38.5px, -38.5px) scale(0.385) translate(38.5px, 38.5px);
+}

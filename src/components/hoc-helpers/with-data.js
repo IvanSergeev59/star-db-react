@@ -1,34 +1,33 @@
-import Spinner from "../spinner/spinner";
-import React, {Component} from "react";
+import React, { Component } from 'react';
 
-const withData = (View, getData) => {
-    return class extends Component {
+import Spinner from '../spinner';
 
-      state = {
-        data : null
-      };
-  
-      componentDidMount() {
-  
-        getData()        
-          .then((data) => {
-            this.setState({
-              data
-            });
+const withData = (View) => {
+  return class extends Component {
+
+    state = {
+      data: null
+    };
+
+    componentDidMount() {
+      this.props.getData()
+        .then((data) => {
+          this.setState({
+            data
           });
+        });
+    }
+
+    render() {
+      const { data } = this.state;
+
+      if (!data) {
+        return <Spinner />;
       }
 
-      render() {
-        const {data} = this.state
-
-        if(!data) {
-          return <Spinner />
-        }
-
-        return <View {...this.props} data={data} />
-      }
+      return <View {...this.props} data={data} />;
     }
   };
+};
 
-  
-    export default withData
+export default withData;

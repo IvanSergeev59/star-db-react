@@ -1,26 +1,15 @@
 .error-indicator {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    align-self: center;
-    margin-left: 35%;
-    color: rgba(245, 178, 55, 0.808);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #c78f22;
+}
+
+.error-indicator img {
+  margin-bottom: 1rem;
 }
 
 .error-indicator .boom {
-    font-size: .9375rem;
-    text-align: center;
-
-}
-
-.error-image {
-    width: 100px;
-    height: 96px;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    position: relative;
-    align-self: center;
+  font-size: 1.7rem;
 }
