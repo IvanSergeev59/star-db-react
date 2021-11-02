@@ -6,6 +6,7 @@ export default class SwapiService {
       const res = await fetch(`${this.apiBase}${url}`);
   
     if (!res.ok) {
+      // eslint-disable-next-line no-useless-concat
       throw new Error (`Could not fetch ${this.apiBase}` + ` , received ${res.status}`)
     }
   

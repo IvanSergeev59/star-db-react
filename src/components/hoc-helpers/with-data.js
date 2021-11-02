@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-
+import ErrorBoundry from '../error-boundry';
 import Spinner from '../spinner';
 
 const withData = (View) => {
@@ -30,12 +30,12 @@ const withData = (View) => {
 
     render() {
       const { data } = this.state;
-
+      
       if (!data) {
-        return <Spinner />;
+        return <ErrorBoundry><Spinner /></ErrorBoundry>;
       }
 
-      return <View {...this.props} data={data} />;
+      return <ErrorBoundry><View {...this.props} data={data} /></ErrorBoundry>;
     }
   };
 };
