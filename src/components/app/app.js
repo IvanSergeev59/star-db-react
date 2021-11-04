@@ -48,14 +48,15 @@ export default class App extends Component {
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService} >
-          <Router>s
+          <Router>
             <div className="stardb-app">
               <Header onServiceChange={this.onServiceChange}/>
 
               <RandomPlanet />
               <Routes>
             
-                <Route path="/people" element={<PeoplePage />} />               
+                <Route path="/people/:id" element={<PeoplePage />} />       
+                <Route path="/people/" element={<PeoplePage />} />          
                 <Route path="/planets" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />    
                 <Route path="/starships/:id" element={<StashipRoute />} />

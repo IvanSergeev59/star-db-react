@@ -6,9 +6,9 @@ import {
   } from '../sw-components';
 
 
-const StarshipsPage = (history) => {
+const StarshipsPage = () => {
     let navigate = useNavigate()
-    console.log(navigate)
+    
     return (
         <StarshipList
             onItemSelected={(itemId) => {
