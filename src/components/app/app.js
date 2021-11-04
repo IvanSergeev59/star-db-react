@@ -14,7 +14,8 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 
 import './app.css';
 
-import { BrowserRouter as Router ,Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router ,Routes, Route, useParams, useNavigate} from 'react-router-dom';
+import { StarshipDetails } from '../sw-components';
 
 
 export default class App extends Component { 
@@ -37,19 +38,27 @@ export default class App extends Component {
   }
 
   render() {
+    const StashipRoute = () => {       
+      let { id } = useParams() 
+      const navigate = useNavigate();
+                    
+      return < StarshipDetails itemId={id} navigate={navigate}/>
+    }
 
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService} >
-          <Router>
+          <Router>s
             <div className="stardb-app">
               <Header onServiceChange={this.onServiceChange}/>
 
               <RandomPlanet />
               <Routes>
-                <Route path="/people" element={<PeoplePage />} />
+            
+                <Route path="/people" element={<PeoplePage />} />               
                 <Route path="/planets" element={<PlanetsPage />} />
                 <Route path="/starships" element={<StarshipsPage />} />    
+                <Route path="/starships/:id" element={<StashipRoute />} />
               </Routes>
             </div>
           </Router>
