@@ -14,7 +14,7 @@ import DummySwapiService from '../../services/dummy-swapi-service';
 
 import './app.css';
 
-import { BrowserRouter as Router ,Routes, Route, useParams, useNavigate} from 'react-router-dom';
+import { BrowserRouter as Router ,Routes, Route, useParams, useNavigate, Navigate} from 'react-router-dom';
 import { StarshipDetails } from '../sw-components';
 
 
@@ -51,7 +51,9 @@ export default class App extends Component {
                     
       return < StarshipDetails itemId={id} navigate={navigate}/>
     }
-
+    const DefaultPage = () => {
+      return <h2>Welcome to StarDB</h2>
+    }
     return (
       <ErrorBoundry>
         <SwapiServiceProvider value={this.state.swapiService} >
@@ -71,7 +73,7 @@ export default class App extends Component {
                 <Route path="/login" element={<LoginPage isLoggedIn={false} onLogin={this.onLogin}/>}></Route>
 
                 <Route path="/secret" element={<SecretPage isLoggedIn={this.state.isLoggedIn}/>}></Route>
-
+                <Route path="/*" element={<DefaultPage />}/>
               </Routes>
             </div>
           </Router>
